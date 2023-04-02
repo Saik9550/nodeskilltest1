@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Interview Details</title>
+    <link rel="stylesheet" href="/css/interview.css">
+  </head>
+  <body>
+    <button type="button" id="back-btn" onclick="location.href='/'">Back to Students</button>
+    <div class="container">
+      <h1>Interview Details</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Interview Company</th>
+            <th>Date</th>
+            <th>Result</th>
+            <th>Change Result Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% students.forEach(function(student) { %>
+            <% if (student.interviews && Object.keys(student.interviews).length > 0) { %>
+             
+                <tr>
+                  <td><%= student.name %></td>
+                  <td><%= student.interviews.company %></td>
+                  <td><%= student.interviews.date.toDateString() %></td>
+                  <td><%= student.interviews.result %></td>
+                  <td>
+                    <form action="/interviews/update/<%= student._id %>%>" method="POST">
+                      <select name="result">
+                        <option value="">modify result</option>
+                        <option value="PASS">PASS</option>
+                        <option value="FAIL">FAIL</option>
+                        <option value="On Hold">On Hold</option>
+                        <option value="Didn’t Attempt">Didn’t Attempt</option>
+                      </select>
+                      <button type="submit">Update</button>
+                    </form>
+                  </td>
+                </tr>
+              
+            <% } %>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

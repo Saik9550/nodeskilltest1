@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>List of Students</title>
+    <link rel="stylesheet" href="/css/showStudent.css">
+  </head>
+  <body>
+    <div id="button-container">
+    <button id="add-student-btn" type="button" onclick="location.href='/students/add-student'">Add New Student</button>
+<button id="schedule-interview-btn" type="button" onclick="location.href='/interviews/add-interview'">Schedule Interview</button>
+<button id="show-interview-btn" type="button" onclick="location.href='/interviews/show-interview'">Show Interview details</button>
+<button id="export-btn" type="button" onclick="location.href='/export'">Export</button>
+<button id="sign-out-btn" type="button" onclick="location.href='/users/sign-out'">Sign Out</button>
+  </div>
+    <div class="container">
+      <h1>List of Students</h1>
+      <table class="table">
+
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>College</th>
+            <th>batch</th>
+            <th>Status</th>
+            <th>DSA Score</th>
+            <th>WebD Score</th>
+            <th>React Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% students.forEach(function(student) { %>
+          <tr>
+            <td><%= student._id %></td>
+            <td><%= student.name %></td>
+            <td><%= student.college %></td>
+            <td><%= student.batch %></td>
+            
+            <td><%= student.status %></td>
+            <td><%= student.courseScores.dsaFinalScore %></td>
+            <td><%= student.courseScores.webDFinalScore %></td>
+            <td><%= student.courseScores.reactFinalScore %></td>
+            
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
